@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `statusengine_logentries` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE `statusengine_host_statehistory` (
+CREATE TABLE IF NOT EXISTS `statusengine_host_statehistory` (
   `hostname`              VARCHAR(255),
   `state_time`            BIGINT(13) NOT NULL,
   `state_change`          TINYINT(1)          DEFAULT 0,
@@ -27,7 +27,7 @@ CREATE TABLE `statusengine_host_statehistory` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_service_statehistory` (
+CREATE TABLE IF NOT EXISTS `statusengine_service_statehistory` (
   `hostname`              VARCHAR(255),
   `service_description`   VARCHAR(255),
   `state_time`            BIGINT(13) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `statusengine_service_statehistory` (
   COLLATE = utf8_swedish_ci;
 
 
-CREATE TABLE `statusengine_hostchecks` (
+CREATE TABLE IF NOT EXISTS `statusengine_hostchecks` (
   `hostname`              VARCHAR(255),
   `state`                 TINYINT(2) UNSIGNED DEFAULT 0,
   `is_hardstate`          TINYINT(1) UNSIGNED DEFAULT 0,
@@ -72,7 +72,7 @@ CREATE TABLE `statusengine_hostchecks` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_servicechecks` (
+CREATE TABLE IF NOT EXISTS `statusengine_servicechecks` (
   `hostname`              VARCHAR(255),
   `service_description`   VARCHAR(255),
   `state`                 TINYINT(2) UNSIGNED DEFAULT 0,
@@ -96,7 +96,7 @@ CREATE TABLE `statusengine_servicechecks` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_hoststatus` (
+CREATE TABLE IF NOT EXISTS `statusengine_hoststatus` (
   `hostname`                      VARCHAR(255),
   `status_update_time`            BIGINT(13) NOT NULL,
   `output`                        VARCHAR(1024),
@@ -144,7 +144,7 @@ CREATE TABLE `statusengine_hoststatus` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_servicestatus` (
+CREATE TABLE IF NOT EXISTS `statusengine_servicestatus` (
   `hostname`                      VARCHAR(255),
   `service_description`           VARCHAR(255),
   `status_update_time`            BIGINT(13) NOT NULL,
@@ -197,7 +197,7 @@ CREATE TABLE `statusengine_servicestatus` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_nodes` (
+CREATE TABLE IF NOT EXISTS `statusengine_nodes` (
   `node_name`       VARCHAR(255),
   `node_version`    VARCHAR(255),
   `node_start_time` BIGINT(13) NOT NULL,
@@ -207,7 +207,7 @@ CREATE TABLE `statusengine_nodes` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_tasks` (
+CREATE TABLE IF NOT EXISTS `statusengine_tasks` (
   `uuid`       VARCHAR(255),
   `node_name`  VARCHAR(255),
   `entry_time` BIGINT(13) NOT NULL,
@@ -220,7 +220,7 @@ CREATE TABLE `statusengine_tasks` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_host_notifications` (
+CREATE TABLE IF NOT EXISTS `statusengine_host_notifications` (
   `hostname`     VARCHAR(255),
   `contact_name` VARCHAR(1024),
   `command_name` VARCHAR(1024),
@@ -240,7 +240,7 @@ CREATE TABLE `statusengine_host_notifications` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_service_notifications` (
+CREATE TABLE IF NOT EXISTS `statusengine_service_notifications` (
   `hostname`            VARCHAR(255),
   `service_description` VARCHAR(255),
   `contact_name`        VARCHAR(1024),
@@ -261,7 +261,7 @@ CREATE TABLE `statusengine_service_notifications` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_host_acknowledgements` (
+CREATE TABLE IF NOT EXISTS `statusengine_host_acknowledgements` (
   `hostname`             VARCHAR(255),
   `state`                TINYINT(2) UNSIGNED DEFAULT 0,
   `author_name`          VARCHAR(255),
@@ -279,7 +279,7 @@ CREATE TABLE `statusengine_host_acknowledgements` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_service_acknowledgements` (
+CREATE TABLE IF NOT EXISTS `statusengine_service_acknowledgements` (
   `hostname`             VARCHAR(255),
   `service_description`  VARCHAR(255),
   `state`                TINYINT(2) UNSIGNED DEFAULT 0,
@@ -298,7 +298,7 @@ CREATE TABLE `statusengine_service_acknowledgements` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_users` (
+CREATE TABLE IF NOT EXISTS `statusengine_users` (
   `username` VARCHAR(255),
   `password` VARCHAR(255),
   KEY `username` (`username`, `password`)
@@ -307,7 +307,7 @@ CREATE TABLE `statusengine_users` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_host_downtimehistory` (
+CREATE TABLE IF NOT EXISTS `statusengine_host_downtimehistory` (
   `hostname`             VARCHAR(255),
   `entry_time`           BIGINT(13) NOT NULL,
   `author_name`          VARCHAR(255),
@@ -330,7 +330,7 @@ CREATE TABLE `statusengine_host_downtimehistory` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_host_scheduleddowntimes` (
+CREATE TABLE IF NOT EXISTS `statusengine_host_scheduleddowntimes` (
   `hostname`             VARCHAR(255),
   `entry_time`           BIGINT(13) NOT NULL,
   `author_name`          VARCHAR(255),
@@ -350,7 +350,7 @@ CREATE TABLE `statusengine_host_scheduleddowntimes` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_service_downtimehistory` (
+CREATE TABLE IF NOT EXISTS `statusengine_service_downtimehistory` (
   `hostname`             VARCHAR(255),
   `service_description`  VARCHAR(255),
   `entry_time`           BIGINT(13) NOT NULL,
@@ -374,7 +374,7 @@ CREATE TABLE `statusengine_service_downtimehistory` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_service_scheduleddowntimes` (
+CREATE TABLE IF NOT EXISTS `statusengine_service_scheduleddowntimes` (
   `hostname`             VARCHAR(255),
   `service_description`  VARCHAR(255),
   `entry_time`           BIGINT(13) NOT NULL,
@@ -395,7 +395,7 @@ CREATE TABLE `statusengine_service_scheduleddowntimes` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_swedish_ci;
 
-CREATE TABLE `statusengine_perfdata` (
+CREATE TABLE IF NOT EXISTS `statusengine_perfdata` (
   `hostname`            VARCHAR(255),
   `service_description` VARCHAR(255),
   `label`               VARCHAR(255),
